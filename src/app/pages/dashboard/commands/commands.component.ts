@@ -30,9 +30,10 @@ export class CommandsComponent implements OnInit {
     });
   }
 
-  changeCommand(x): void {
-    this.commands[x] = !this.commands[x];
-    this.dashboardService.changeCommandSwitch(this.commands, this.streamerName).subscribe();
+  changeCommand(): void {
+    setTimeout(() => {
+      this.dashboardService.changeCommandSwitch(this.commands, this.streamerName).subscribe();
+    });
   }
 
   ngOnInit(): void {
