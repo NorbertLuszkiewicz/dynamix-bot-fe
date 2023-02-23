@@ -30,7 +30,8 @@ export class CommandsComponent implements OnInit {
     });
   }
 
-  changeCommand(): void {
+  changeCommand(x): void {
+    this.commands[x] = !this.commands[x];
     this.dashboardService.changeCommandSwitch(this.commands, this.streamerName).subscribe();
   }
 
