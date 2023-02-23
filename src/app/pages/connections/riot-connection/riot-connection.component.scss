@@ -1,0 +1,27 @@
+.button {
+  height: 35px;
+  width: 135px;
+  margin: 10px auto 0;
+}
+
+mat-form-field {
+  color: var(--white);
+  margin: 2px 20px;
+}
+
+.account {
+  max-width: 400px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+  margin: 20px auto;
+  border-bottom: 1px solid var(--primaryColor);
+
+  & > p {
+    margin: 0;
+  }
+}
+
+.account-tittle {
+  margin: 20px;
+}

@@ -1,1 +1,89 @@
-/* You can add global styles to this file, and also import other style files */
+@import "~@angular/material/theming";
+@include mat-core();
+
+$custom-collection: (
+  warning: #ffc116,
+  success: #009908,
+  danger: #c00000,
+  contrast: (
+    warning: #000000,
+    success: #ffffff,
+    danger: #ffffff,
+  ),
+);
+$my-app-custom: mat-palette($custom-collection, custom);
+
+$my-app-primary: mat-palette($mat-orange, 700, 900, A100);
+$my-app-accent: mat-palette($mat-purple, 700, 900, A100);
+$my-app-warn: mat-palette($mat-red, 700, 900, A100);
+$my-app-theme: mat-dark-theme($my-app-primary, $my-app-accent, $my-app-warn);
+$my-app-theme: map_merge(
+  $my-app-theme,
+  (
+    custom: $my-app-custom,
+  )
+);
+@include angular-material-theme($my-app-theme);
+$custom: map-get($my-app-theme, custom);
+
+$my-success: mat-palette($mat-red, 700, 900, A100);
+
+.mat-success {
+  background-color: mat-color($custom, success);
+  color: mat-color($custom, success-contrast);
+}
+
+:root {
+  --backgroundColor: #020b20;
+  --backgroundColorLighten: #020b20;
+  --primaryColor: #ff8855;
+  --success: #009908;
+  --secondaryColor: #f50057;
+  --white: #fff;
+}
+
+html,
+body {
+  background: var(--backgroundColor);
+  color: var(--white);
+  margin: 0;
+  font-family: "Montserrat", sans-serif;
+}
+
+p,
+h1,
+h2,
+h3,
+h4,
+h5 {
+  font-size: 115%;
+}
+
+a {
+  color: var(--primaryColor);
+  text-decoration: none;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+.spacer {
+  flex: 1 1 0%;
+}
+
+@media (max-width: 1000px) {
+  a {
+    font-size: 85%;
+  }
+  p,
+  h1,
+  h2,
+  h3,
+  h4,
+  h5 {
+    font-size: 100%;
+  }
+}
