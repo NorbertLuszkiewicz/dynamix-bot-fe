@@ -17,6 +17,7 @@ export class ConnectionsService {
       .put<MessageResponse>(`${environment.url}streamelements`, { clientID, token, user: streamerName })
       .pipe(
         tap((data) => {
+          this.authService.getNewUser();
           this.authService.successMessage$.next(data.message || 'Added slot');
         })
       );
@@ -25,7 +26,8 @@ export class ConnectionsService {
   addRiotAccount(name: string, server: string, streamerName: string): Observable<MessageResponse> {
     return this.http.put<MessageResponse>(`${environment.url}riot`, { name, server, user: streamerName }).pipe(
       tap((data) => {
-        this.authService.successMessage$.next(data.message || 'Added slot');
+        this.authService.getNewUser();
+        this.authService.successMessage$.next(data.message || 'Added riot account');
       })
     );
   }
@@ -33,7 +35,8 @@ export class ConnectionsService {
   removeRiotAccount(name: string, server: string, streamerName: string): Observable<MessageResponse> {
     return this.http.put<MessageResponse>(`${environment.url}riot-remove`, { name, server, user: streamerName }).pipe(
       tap((data) => {
-        this.authService.successMessage$.next(data.message || 'Added slot');
+        this.authService.getNewUser();
+        this.authService.successMessage$.next(data.message || 'Removed riot account');
       })
     );
   }

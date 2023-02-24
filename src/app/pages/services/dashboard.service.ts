@@ -35,6 +35,7 @@ export class DashboardService {
       .put<MessageResponse>(`${environment.url}slots`, { name, emotes, withBan, user: streamerName })
       .pipe(
         tap((data) => {
+          this.authService.getNewUser();
           this.authService.successMessage$.next(data.message || 'Added slot');
         })
       );
@@ -49,6 +50,7 @@ export class DashboardService {
   removeSlot(id: string, streamerName: string): Observable<MessageResponse> {
     return this.http.put<MessageResponse>(`${environment.url}slot_remove`, { id, user: streamerName }).pipe(
       tap((data) => {
+        this.authService.getNewUser();
         this.authService.successMessage$.next(data.message || 'Removed slot');
       })
     );
