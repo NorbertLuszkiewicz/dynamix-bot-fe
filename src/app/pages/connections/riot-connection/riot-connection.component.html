@@ -29,7 +29,7 @@
     <h2 class="account-tittle" *ngIf="riotAccounts.length > 0">Lista kont Riot połączona z botem</h2>
     <div class="account" *ngFor="let account of riotAccounts">
       <p class="account-name">{{ account.name }}</p>
-      <p class="account-server">{{ account.server }}</p>
+      <p class="account-server">{{ userServerName(account.server) }}</p>
 
       <button mat-icon-button color="warn" aria-label="Delete riot account" (click)="deleteRiotAccount(account)">
         <mat-icon>delete</mat-icon>

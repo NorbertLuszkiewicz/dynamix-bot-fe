@@ -30,6 +30,14 @@ export class ConnectionsService {
     );
   }
 
+  removeRiotAccount(name: string, server: string, streamerName: string): Observable<MessageResponse> {
+    return this.http.put<MessageResponse>(`${environment.url}riot-remove`, { name, server, user: streamerName }).pipe(
+      tap((data) => {
+        this.authService.successMessage$.next(data.message || 'Added slot');
+      })
+    );
+  }
+
   connectSpotify(streamerName: string): void {
     window.location.href = `${environment.url}spotify?user=${streamerName}`;
   }

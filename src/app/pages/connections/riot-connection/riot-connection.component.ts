@@ -33,7 +33,9 @@ export class RiotConnectionComponent implements OnInit {
   }
 
   deleteRiotAccount(account: RiotAccount): void {
-    console.log(account);
+    const name = localStorage.getItem('name');
+
+    this.connectionsService.removeRiotAccount(account.name, account.server, name).subscribe();
   }
 
   userServerName(name): string {
@@ -43,6 +45,8 @@ export class RiotConnectionComponent implements OnInit {
       [ServerName.NA]: 'NA',
       [ServerName.KR]: 'KR',
     };
+
+    console.log(name, server);
 
     return server[name];
   }
